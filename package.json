@@ -1,0 +1,23 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "EXAMPLE",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "https://github.com/CheesyGamer77/typescript-base",
+  "author": "CheesyGamer77 <43181046+CheesyGamer77@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "is-ci || husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "eslint": "^8.25.0",
+    "husky": "^8.0.1",
+    "is-ci": "^3.0.1",
+    "typescript": "^4.8.4"
+  }
+}
