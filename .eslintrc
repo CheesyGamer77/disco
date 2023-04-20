@@ -64,6 +64,10 @@
             {
                 "name": "clearInterval",
                 "message": "Import clearInterval from `node:timers` instead"
+            },
+            {
+                "name": "WebSocket",
+                "message": "Import WebSocket from `ws` instead"
             }
         ],
 		"no-shadow": "off",
