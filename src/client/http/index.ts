@@ -1,4 +1,4 @@
-import { VERSION } from '..';
+import { VERSION } from '../..';
 import { DiscordRequest } from './requests';
 import { type GetGatewayBotResponse } from './types';
 
