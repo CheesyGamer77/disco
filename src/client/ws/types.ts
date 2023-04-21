@@ -47,3 +47,5 @@ export type GatewayReadyData = {
     shard: [number, number],
     application: any
 }
+
+export type GatewayInvalidSessionData = boolean;

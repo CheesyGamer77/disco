@@ -1,4 +1,3 @@
-import { API_VERSION } from '..';
 import { HTTPClient } from './http';
 import { WebSocketClient } from './ws';
 
@@ -16,9 +15,9 @@ export class DiscordClient {
     async connect() {
         const { url, shards } = await this.http.getGatewayBot();
 
-        console.log(`Obtaining gateway connection to ${url} with ${shards} recommended shards`);
+        console.log(`Obtaining gateway connection with ${shards} recommended shards`);
 
         // TODO: Implement compression
-        await this.ws.connect(`${url}/?v=${API_VERSION}&encoding=json`);
+        await this.ws.connect(url);
     }
 }
