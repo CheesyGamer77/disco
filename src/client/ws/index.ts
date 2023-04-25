@@ -1,7 +1,8 @@
-import { EventEmitter, WebSocket } from 'ws';
+import { WebSocket } from 'ws';
 import { type GatewayHelloPayload, GatewayOpcode, type GatewayPayload, type SendablePayload, type GatewayDispatchPayload, GatewayReadyData, GatewayInvalidSessionData } from './types';
 import { setTimeout, setInterval, clearInterval } from 'node:timers';
 import process from 'node:process';
+import { EventEmitter } from 'node:events';
 import { API_VERSION } from '../..';
 
 type WebSocketState = 'SHUTDOWN' | 'CONNECTING' | 'CONNECTED' | 'RECONNECTING';
