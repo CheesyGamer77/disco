@@ -31,9 +31,10 @@ type GatewayHelloData = {
 }
 export type GatewayHelloPayload = GatewayPayload<GatewayHelloData>;
 
+export type GatewayDispatchEvent = 'READY';
 export type GatewayDispatchPayload<T> = GatewayPayload<T> & {
     s: number,
-    t: string
+    t: GatewayDispatchEvent
 }
 
 // https://discord.com/developers/docs/topics/gateway-events#ready-ready-event-fields

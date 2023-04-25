@@ -185,11 +185,18 @@ export class WebSocketClient extends EventEmitter {
         console.log(`Received Dispatch Event: ${data.t}`);
         this.sequenceNumber = data.s;
 
-        if (data.t == 'READY') {
-            this._state = 'CONNECTED';
-            const d = data.d as GatewayReadyData;
-            this.resumeUrl = d.resume_gateway_url;
-            this.sid = d.session_id;
+        switch (data.t) {
+            case 'READY': {
+                this._state = 'CONNECTED';
+                const d = data.d as GatewayReadyData;
+                this.resumeUrl = d.resume_gateway_url;
+                this.sid = d.session_id;
+                break;
+            }
+            default: {
+                console.warn(`Received unknown gateway dispatch (${data.t})! Data: ${JSON.stringify(data.d)}`);
+                break;
+            }
         }
     }
 
