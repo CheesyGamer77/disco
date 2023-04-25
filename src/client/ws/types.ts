@@ -1,3 +1,5 @@
+import { UnavailableGuild } from '../types';
+
 // https://discord.com/developers/docs/topics/opcodes-and-status-codes#gateway-gateway-opcodes
 export enum GatewayOpcode {
     Dispatch,
@@ -41,7 +43,7 @@ export type GatewayDispatchPayload<T> = GatewayPayload<T> & {
 export type GatewayReadyData = {
     v: number,
     user: any,
-    guilds: any[],
+    guilds: UnavailableGuild[],
     session_id: string,
     resume_gateway_url: string,
     shard: [number, number],
