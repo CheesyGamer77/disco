@@ -7,9 +7,9 @@ export class DiscordClient {
 
     // TODO: Implement intents
     // TODO: Implement presence
-    constructor(token: string) {
+    constructor(token: string, intents: number) {
         this.http = new HTTPClient(token);
-        this.ws = new WebSocketClient(token);
+        this.ws = new WebSocketClient(token, intents);
     }
 
     async connect() {

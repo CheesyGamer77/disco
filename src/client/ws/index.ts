@@ -36,14 +36,16 @@ export class WebSocketClient extends EventEmitter {
     private lastHeartbeatWasAcked = true;
     private sequenceNumber: number | null = null;
     private resumeOptions = `?v=${API_VERSION}&encoding=json` as const;
+    private readonly intents: number;
 
     get state() {
         return this._state;
     }
 
-    constructor(token: string) {
+    constructor(token: string, intents: number) {
         super();
         this.token = token;
+        this.intents = intents;
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -141,7 +143,7 @@ export class WebSocketClient extends EventEmitter {
                                 status: 'online',
                                 afk: false
                             },
-                            intents: 1 << 0
+                            intents: this.intents
                         }
                     });
                 }
@@ -187,6 +189,7 @@ export class WebSocketClient extends EventEmitter {
         this.sequenceNumber = data.s;
 
         switch (data.t) {
+            // https://discord.com/developers/docs/topics/gateway-events#ready
             case 'READY': {
                 this._state = 'CONNECTED';
                 const d = data.d as GatewayReadyData;
