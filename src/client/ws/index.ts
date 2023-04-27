@@ -54,6 +54,7 @@ export class WebSocketClient extends EventEmitter {
     }
 
     async connect(url: string, identify = true) {
+        clearInterval(this.heartbeatInterval);
         this._state = identify ? 'CONNECTING' : 'RECONNECTING';
         const formatted_url = `${url}/${this.resumeOptions}`;
         console.log(`Connecting to gateway url ${formatted_url}`);
@@ -198,7 +199,7 @@ export class WebSocketClient extends EventEmitter {
                 break;
             }
             default: {
-                console.warn(`Received unknown gateway dispatch (${data.t})! Data: ${JSON.stringify(data.d)}`);
+                console.warn(`Received unknown gateway dispatch (${data.t})! Data: ${JSON.stringify(data.d, undefined, 4)}`);
                 break;
             }
         }
