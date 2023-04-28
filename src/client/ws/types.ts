@@ -39,16 +39,17 @@ export type GatewayDispatchPayload<T> = GatewayPayload<T> & {
 
 // https://discord.com/developers/docs/topics/gateway-events#ready-ready-event-fields
 // TODO: implement user type
-// TODO: implement unavailable guild type
 // TODO: implement application type
 export type GatewayReadyData = {
     v: number,
-    user: any,
+    // TODO: implement user
+    user: unknown,
     guilds: UnavailableGuild[],
     session_id: string,
     resume_gateway_url: string,
     shard: [number, number],
-    application: any
+    // TODO: implement application
+    application: unknown
 }
 
 export type GatewayInvalidSessionData = boolean;

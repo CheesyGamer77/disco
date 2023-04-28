@@ -115,10 +115,10 @@ export interface RawGuild {
     explicit_content_filter: ExplicitContentFilterLevel,
 
     // TODO: implement roles
-    roles: any[],
+    roles: unknown[],
 
     // TODO: implement emojis
-    emojis: any[],
+    emojis: unknown[],
 
     features: GuildFeature[],
     mfa_level: GuildMFALevel,
@@ -141,12 +141,12 @@ export interface RawGuild {
     approximate_presence_count?: number,
 
     // TODO: implement guild welcome screens
-    welcome_screen?: any,
+    welcome_screen?: unknown,
 
     nsfw_level: GuildNSFWLevel,
 
     // TODO: implement stickers
-    stickers?: any[],
+    stickers?: unknown[],
 
     premium_progress_bar_enabled: boolean
 }
