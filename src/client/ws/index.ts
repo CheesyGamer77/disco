@@ -123,7 +123,7 @@ export class WebSocketClient extends EventEmitter {
                 const interval = payload.d.heartbeat_interval;
                 const jitter = interval * Math.random();
 
-                console.log(`Waiting to send first heartbeat (${jitter}ms)`);
+                console.log(`Waiting ${jitter}ms for first heartbeat (interval: ${interval}ms)`);
 
                 setTimeout(() => {
                     console.log('Sending first heartbeat');
@@ -223,6 +223,7 @@ export class WebSocketClient extends EventEmitter {
 
         if (!canReconnect) {
             console.error(`Got disconnected with non-resumable close code ${code}`);
+            clearInterval(this.heartbeatInterval);
             await this.ws?.close(1001);
             await this.disconnect();
         } else {
