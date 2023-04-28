@@ -12,6 +12,7 @@ import { setTimeout, setInterval, clearInterval } from 'node:timers';
 import process from 'node:process';
 import { EventEmitter } from 'node:events';
 import { API_VERSION } from '../..';
+import type { RawGuild } from '../types';
 
 type WebSocketState = 'SHUTDOWN' | 'CONNECTING' | 'CONNECTED' | 'RECONNECTING';
 
@@ -206,6 +207,10 @@ export class WebSocketClient extends EventEmitter {
                 this.sid = d.session_id;
                 break;
             }
+            case 'GUILD_CREATE': {
+                this.emit('GUILD_CREATE', data.d as RawGuild);
+                break;
+            }
             default: {
                 console.warn(`Received unknown gateway dispatch (${data.t})! Data: ${JSON.stringify(data.d, undefined, 4)}`);
                 break;
@@ -238,3 +243,15 @@ export class WebSocketClient extends EventEmitter {
         await this.connect(this.resumeUrl ?? '', false);
     }
 }
+
+// https://stackoverflow.com/a/61609010
+export interface WebSocketClient {
+    on<U extends keyof GatewayEvents>(event: U, listener: GatewayEvents[U]): this;
+    emit<U extends keyof GatewayEvents>(event: U, ...args: Parameters<GatewayEvents[U]>): boolean;
+}
+
+export interface GatewayEvents {
+    'READY': () => void;
+    'GUILD_CREATE': (guild: RawGuild) => void;
+}
+

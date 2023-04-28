@@ -1,3 +1,4 @@
+import { GatewayEvents } from '.';
 import { UnavailableGuild } from '../types';
 
 // https://discord.com/developers/docs/topics/opcodes-and-status-codes#gateway-gateway-opcodes
@@ -31,7 +32,7 @@ type GatewayHelloData = {
 }
 export type GatewayHelloPayload = GatewayPayload<GatewayHelloData>;
 
-export type GatewayDispatchEvent = 'READY';
+export type GatewayDispatchEvent = keyof GatewayEvents;
 export type GatewayDispatchPayload<T> = GatewayPayload<T> & {
     s: number,
     t: GatewayDispatchEvent

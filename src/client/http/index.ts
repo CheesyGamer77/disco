@@ -1,4 +1,5 @@
 import { VERSION } from '../..';
+import { RawGuild, Snowflake } from '../types';
 import { DiscordRequest } from './requests';
 import { type GetGatewayBotResponse } from './types';
 
@@ -31,5 +32,11 @@ export class HTTPClient {
 
     async getGatewayBot(): Promise<GetGatewayBotResponse> {
         return await new DiscordRequest<GetGatewayBotResponse>('GET', '/gateway/bot').run(this.authHeaders);
+    }
+
+    async getGuild(id: Snowflake): Promise<RawGuild> {
+        return await new DiscordRequest<RawGuild>('GET', '/guilds/{guild.id}')
+            .setRouteParam('guild.id', id)
+            .run(this.authHeaders);
     }
 }
