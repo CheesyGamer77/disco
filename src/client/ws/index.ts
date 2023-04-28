@@ -1,7 +1,7 @@
 import { WebSocket } from 'ws';
+import { GatewayOpcode } from './types';
 import type {
     GatewayHelloPayload,
-    GatewayOpcode,
     GatewayPayload,
     SendablePayload,
     GatewayDispatchPayload,
