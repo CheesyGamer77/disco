@@ -150,3 +150,5 @@ export interface RawGuild {
 
     premium_progress_bar_enabled: boolean
 }
+
+export { GatewayIntentBit } from './ws/types';
