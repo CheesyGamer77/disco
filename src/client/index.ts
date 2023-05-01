@@ -7,25 +7,25 @@ import { EventEmitter } from 'node:events';
  * Represents a Discord client backed by both the Discord HTTP and WebSocket APIs.
  */
 export class DiscordClient extends EventEmitter {
+    public readonly guilds: GuildCache;
+
     public readonly ws: WebSocketClient;
     public readonly http: HTTPClient;
-
-    public readonly guilds: GuildCache;
 
     // TODO: Implement presence
     constructor(token: string, intents: number) {
         super();
-        this.http = new HTTPClient(token);
         this.ws = new WebSocketClient(token, intents)
             .on('GUILD_CREATE', (guild) => {
                 console.log(`Caching guild with id ${guild.id}`);
                 this.guilds.set(guild.id, guild);
             });
-
+        this.http = new HTTPClient(token);
         this.guilds = new GuildCache(this.http);
     }
 
     async connect() {
+        // TODO: Implement sharding
         const { url, shards } = await this.http.getGatewayBot();
 
         console.log(`Obtaining gateway connection with ${shards} recommended shards`);
