@@ -1,19 +1,7 @@
-# typescript-base
+# Disco
 
-A typescript repository pre-configured for code style linting and commit linting.
+A node.js library for dancing around the [Discord API](https://discord.dev).
 
-## Usage
+## Development Status
 
-Click `Use this template` and create a new repository.
-
-Clone the resulting repo into your project folder
-
-```sh-session
-git clone https://github.com/your-username/your-repo .
-```
-
-Edit the contents of `package.json` (namely `name`, `description`, `repository`, and `author`)
-
-Run `yarn install`
-
-Get coding!
+This project is a side project in *very* early development stages, and not yet released to npm.
